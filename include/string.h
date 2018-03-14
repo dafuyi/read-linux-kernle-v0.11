@@ -23,7 +23,18 @@ extern char * strerror(int errno);
  *
  *		(C) 1991 Linus Torvalds
  */
- 
+
+/**
+ * 关键字 inline + exterm 组合在一起几乎等同于一个宏定义.
+ * 使用这种组合方式就是把带有组合关键字的一个函数放到 .h
+ * 头文件中,并且把不含关键字的的另一个相同的函数定义放在 
+ * 一个库文件中.此时头文件的定义会让就大多数对该函数的调用
+ * 被替换嵌入.如果还没有被替换的对该函数的调用,那么就会使
+ * 用(引用)程序文件的中或库中的拷贝.
+ * 
+ * 
+ * 
+ */
 extern inline char * strcpy(char * dest,const char *src)
 {
 __asm__("cld\n"

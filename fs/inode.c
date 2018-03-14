@@ -17,6 +17,10 @@ struct m_inode inode_table[NR_INODE]={{0,},};
 static void read_inode(struct m_inode * inode);
 static void write_inode(struct m_inode * inode);
 
+/**
+ * 同时用 static inline 申明的语句,"都会被调用而集成在调用者的
+ * 代码中"(<0.11>P54)
+ */
 static inline void wait_on_inode(struct m_inode * inode)
 {
 	cli();
